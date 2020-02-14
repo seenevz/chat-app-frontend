@@ -1,0 +1,42 @@
+.home-container {
+  height: 92vh;
+  padding-top: 60px;
+}
+
+.conversation-list {
+  float: left;
+  height: 650px;
+  width: 300px;
+  margin-left: 70px;
+  border: 1px solid black;
+}
+
+.conversation-container {
+  border: 1px solid black;
+  float: right;
+  height: 650px;
+  width: 900px;
+  margin-right: 70px;
+}
+
+.conversation-container > h1 {
+  margin: 12px 0px;
+  padding-left: 5%;
+}
+
+.conversation-body {
+  border: 1px solid black;
+  height: 450px;
+  width: 90%;
+  margin: 0 5%;
+}
+
+.conversation-body li {
+  border: 1px dashed black;
+  list-style: none;
+  margin: 15px 5%;
+}
+
+.user-sent {
+  text-align: right;
+}
