@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function LoginForm({ handleSubmit }) {
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({ username: "", password: "" });
 
   const { username, password } = formValues;
 
@@ -11,15 +11,21 @@ export default function LoginForm({ handleSubmit }) {
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <label for="username">Username</label>
+    <form
+      className="login-form"
+      onSubmit={e => {
+        e.preventDefault();
+        handleSubmit({ auth: { ...formValues } });
+      }}
+    >
+      <label htmlFor="username">Username</label>
       <input
         name="username"
         type="text"
         onChange={handleInput}
         value={username}
       />
-      <label for="password">Password</label>
+      <label htmlFor="password">Password</label>
       <input
         name="password"
         type="password"
