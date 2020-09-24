@@ -1,6 +1,6 @@
 import * as cable from "actioncable";
 
-const BASE_URL = "192.168.1.30:3000";
+const BASE_URL = "127.0.0.1:3000";
 const BASE_HTTP = `http://${BASE_URL}`;
 const BASE_WS = `ws://${BASE_URL}`;
 
@@ -8,6 +8,7 @@ const LOGIN_URL = `${BASE_HTTP}/login`;
 
 const configObj = data => ({
   method: "POST",
+  credentials: 'include',
   headers: {
     "Content-Type": "application/json",
   },
@@ -16,8 +17,8 @@ const configObj = data => ({
 
 const parseResp = async resp => {
   const obj = await resp.json();
+  if (!resp.ok) throw new Error(obj.error ? obj.error : obj.exception);
 
-  if (!resp.ok) throw new Error(obj.exception);
   return obj;
 };
 
@@ -35,4 +36,4 @@ export const loginUser = async loginData => {
   return await post(LOGIN_URL, loginData);
 };
 
-export const cableConnection = cable.createConsumer(`ws://${BASE_URL}/cable`);
+export const cableConnection = cable.createConsumer(`${BASE_WS}/cable`);

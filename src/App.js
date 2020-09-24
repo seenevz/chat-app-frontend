@@ -16,9 +16,10 @@ function App() {
     try {
       const user = await loginUser(loginData);
       setUser(user);
-    } catch (msg) {
-      console.log(msg);
-      setError("error");
+    } catch (err) {
+      console.log(err);
+
+      setError(err.message);
     }
   };
 

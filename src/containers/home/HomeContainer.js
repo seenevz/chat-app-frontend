@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ConversationListContainer from "../conversationList/ConversationListContainer";
+import ConversationsListContainer from "../conversationsList/ConversationsListContainer";
 import ConversationContainer from "../../components/ConversationContainer";
 import { cableConnection } from "../../ApiAdapter";
 
@@ -12,7 +12,7 @@ export default function HomeContainer() {
   });
   return (
     <div className="home-container">
-      <ConversationListContainer />
+      <ConversationsListContainer />
       <ConversationContainer />
     </div>
   );
