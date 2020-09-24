@@ -1,37 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import NavbarContainer from "./containers/navbar/NavbarContainer";
 import AuthorisedApp from "./containers/AuthorisedApp";
 import LoginContainer from "./containers/login/LoginContainer";
-import { loginUser } from "./ApiAdapter";
+import { verifyUser, logoutUser } from "./ApiAdapter";
 // const CableContext = React.createContext(
 //   createConsumer("ws://locahost:3000/cable")
 // );
 
 function App() {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
 
-  const handleLoginUser = async loginData => {
-    try {
-      const user = await loginUser(loginData);
+  useEffect(() => {
+    (async () => {
+      const user = await verifyUser();
       setUser(user);
-    } catch (err) {
-      console.log(err);
+    })();
+  }, []);
 
-      setError(err.message);
-    }
+  const handleLogout = async () => {
+    const resp = await logoutUser();
+    setUser(resp);
+    
   };
 
   return (
     // <Context.Provider>
     <>
-      <NavbarContainer />
-      {error && <h1>{error}</h1>}
+      <NavbarContainer logged_in={!!user} handleLogout={handleLogout} />
       {user ? (
         <AuthorisedApp currentUser={user} />
       ) : (
-        <LoginContainer handleLoginUser={handleLoginUser} />
+        <LoginContainer setUser={setUser} />
       )}
     </>
     // </Context.Provider>
