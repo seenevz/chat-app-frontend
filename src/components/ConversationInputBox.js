@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function ConversationInputBox() {
-  const [form, setForm] = useState({ message: null });
-
-  const handleFormInput = ({ target }) =>
-    setForm({ [target.name]: target.value });
-
+export default function ConversationInputBox({
+  messageInput,
+  handleInput,
+  handleSubmit,
+}) {
   return (
     <div>
-      <form>
-        <input
-          type="text"
-          onChange={handleFormInput}
-          name="message"
-          value={form.message}
-        />
-        <input type="submit" value="Send!" />
+      <form onSubmit={handleSubmit}>
+        <label>
+          Message:
+          <input
+            type="text"
+            onChange={handleInput}
+            name="message"
+            value={messageInput}
+          />
+        </label>
+
+        <input type="submit" value="Submit"  />
       </form>
     </div>
   );

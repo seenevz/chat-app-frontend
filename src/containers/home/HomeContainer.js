@@ -1,19 +1,17 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import ConversationsListContainer from "../conversationsList/ConversationsListContainer";
 import ConversationContainer from "../../components/ConversationContainer";
-import { cableConnection } from "../../ApiAdapter";
 
 import "./Home.css";
 
-export default function HomeContainer() {
-  const convosSubscription = cableConnection.subscriptions.create({
-    channel: "ConversationsChannel",
-    user_id: 1,
-  });
+export default function HomeContainer({currentUserId}) {
+  const [conversationId, setConversationId] = useState(null)
+
+  const selectConversation = (conversationId) => setConversationId(conversationId)
   return (
     <div className="home-container">
-      <ConversationsListContainer />
-      <ConversationContainer />
+      <ConversationsListContainer selectConversation={selectConversation}/>
+      <ConversationContainer conversationId={conversationId} currentUserId={currentUserId}/>
     </div>
   );
 }

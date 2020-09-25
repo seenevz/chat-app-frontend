@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomeContainer from "../containers/home/HomeContainer";
 
-export default function AuthorisedApp() {
+import { cableConnection } from "../ApiAdapter";
+
+export default function AuthorisedApp({currentUserId}) {
+  useEffect(() => {
+    return () => cableConnection.disconnect();
+  });
   return (
     <>
-      <HomeContainer />
+      <HomeContainer currentUserId={currentUserId}/>
     </>
   );
 }

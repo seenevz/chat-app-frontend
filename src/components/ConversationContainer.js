@@ -1,13 +1,53 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { cableConnection } from "../ApiAdapter";
 import ConversationBody from "../containers/conversation/ConversationBody";
 import ConversationInputBox from "./ConversationInputBox";
 
-export default function ConversationContainer() {
+export default function ConversationContainer({
+  conversationId,
+  currentUserId,
+}) {
+  const [messages, setMessages] = useState([]);
+  const [messageInput, setMessageInput] = useState("");
+
+  const messagesSubscription = useRef({});
+
+  useEffect(() => {
+    messagesSubscription.current = cableConnection.subscriptions.create(
+      {
+        channel: "MessagesChannel",
+        conversation: conversationId,
+      },
+      {
+        connected: () => messagesSubscription.current.perform("all_messages"),
+        received: data => setMessages(state => [...state, ...data]),
+        send_message: message =>
+          messagesSubscription.current.perform("create_message", { message }),
+      }
+    );
+
+    return () => messagesSubscription.current.unsubscribe();
+  }, [conversationId]);
+
+  const handleFormInput = e => {
+    setMessageInput(e.target.value);
+  };
+
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    messagesSubscription.current.send_message(messageInput);
+    setMessageInput("");
+  };
+
   return (
     <div className="conversation-container">
-      <h1>Conversation id: </h1>
-      <ConversationBody />
-      <ConversationInputBox />
+      <h1>Conversation id: {conversationId}</h1>
+      <ConversationBody messages={messages} currentUserId={currentUserId} />
+      <ConversationInputBox
+        handleInput={handleFormInput}
+        handleSubmit={handleFormSubmit}
+        messageInput={messageInput}
+      />
     </div>
   );
 }

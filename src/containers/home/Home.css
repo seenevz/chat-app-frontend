@@ -29,14 +29,21 @@
   height: 450px;
   width: 90%;
   margin: 0 5%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
 }
 
 .conversation-body li {
   border: 1px dashed black;
   list-style: none;
   margin: 15px 5%;
+  width: 45%;
+  background-color: aqua;
 }
 
-.user-sent {
-  text-align: right;
+.conversation-body li.current-user {
+  align-self: end;
+  background-color: greenyellow;
 }

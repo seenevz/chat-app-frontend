@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
-export default function ConversationBody() {
+import ConversationMessage from "./ConversationMessage";
+
+export default function ConversationBody({ messages, currentUserId }) {
+  const ul = useRef(null);
+
+  const anchorScrollBottom = elem => (elem.scrollTop = elem.scrollHeight);
+
+  useEffect(() => {
+    anchorScrollBottom(ul.current)
+  }, [messages])
+
+  const isFromCurrentUser = (currentUserId, messageUserId) =>
+    currentUserId === messageUserId;
   return (
-    <ul className="conversation-body">
-      <li>test</li>
-      <li>test</li>
-      <li>test</li>
-      <li>test</li>
-      <li>test</li>
-      <li>test</li>
-      <li>test</li>
+    <ul ref={ul} className="conversation-body">
+      {messages.map((message, index) => {
+        return (
+          <ConversationMessage
+            message={message}
+            key={message.id + index}
+            fromCurrentUser={isFromCurrentUser(currentUserId, message.user_id)}
+          />
+        );
+      })}
     </ul>
   );
 }
