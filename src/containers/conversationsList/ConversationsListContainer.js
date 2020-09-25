@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { cableConnection } from "../../ApiAdapter";
 
-import ConversationsListItem from "./ConversationsListItem";
+import ConversationsListItem from "../../components/ConversationsListItem";
 
 export default function ConversationsListContainer({ selectConversation }) {
   const [conversations, setConversations] = useState([]);

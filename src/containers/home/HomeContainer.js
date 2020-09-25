@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ConversationsListContainer from "../conversationsList/ConversationsListContainer";
-import ConversationContainer from "../../components/ConversationContainer";
+import ConversationContainer from "../conversation/ConversationContainer";
 
 import "./Home.css";
 
