@@ -20,7 +20,7 @@ export default function ConversationContainer({
       },
       {
         connected: () => messagesSubscription.current.perform("all_messages"),
-        received: data => setMessages(state => [...state, ...data]),
+        received: data => handleReceiveMessage(data),
         send_message: message =>
           messagesSubscription.current.perform("create_message", { message }),
       }
@@ -28,6 +28,18 @@ export default function ConversationContainer({
 
     return () => messagesSubscription.current.unsubscribe();
   }, [conversationId]);
+
+  const handleReceiveMessage = ({action, payload}) => {
+    switch (action) {
+      case 'all_messages':
+        setMessages(payload)
+        break;
+      case 'create_message':
+        setMessages(state => [...state, payload])
+      default:
+        break;
+    }
+  }
 
   const handleFormInput = e => {
     setMessageInput(e.target.value);
