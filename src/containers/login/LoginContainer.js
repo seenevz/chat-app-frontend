@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { loginUser } from "../../ApiAdapter";
+import { loginUser, signupUser } from "../../ApiAdapter";
 
 import "./login.css";
-import LoginForm from "../../components/LoginForm";
+import LoginForm from "../../components/LoginForm.jsx";
 
 export default function LoginContainer({ setUser }) {
   const [error, setError] = useState(null);
+  const [loginScreen, setLoginScreen] = useState(true);
+
+  const handleScreenChange = () => setLoginScreen(current => !current);
 
   const handleLoginUser = async loginData => {
     try {
@@ -17,11 +20,25 @@ export default function LoginContainer({ setUser }) {
       setError(err.message);
     }
   };
-  
+
+  const handleSignupUser = async signupData => {
+    try {
+      const user = await signupUser(signupData);
+      setUser(user);
+    } catch (err) {
+      console.log(err);
+
+      setError(err.message);
+    }
+  };
+
   return (
     <div className="login-container">
       {error && <p>{error}</p>}
-      <LoginForm handleSubmit={handleLoginUser} />
+      <LoginForm handleSubmit={loginScreen ? handleLoginUser : handleSignupUser} loginScreen={loginScreen} />
+      <h4>
+        <a onClick={handleScreenChange}>{loginScreen ? "Sign up" : "Login"}</a>
+      </h4>
     </div>
   );
 }

@@ -7,23 +7,23 @@ import { verifyUser, logoutUser } from "./ApiAdapter";
 
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined);
 
   useEffect(() => {
     (async () => {
       const user = await verifyUser();
-      setUser(user);
+      setUser(user ? user : undefined);
     })();
   }, []);
 
   const handleLogout = async () => {
-    const resp = await logoutUser();
-    setUser(resp);
+    await logoutUser();
+    setUser(undefined);
   };
 
   return (
     <>
-      <NavbarContainer logged_in={!!user} handleLogout={handleLogout} />
+      <NavbarContainer logged_in={!!user} handleLogout={handleLogout} user={user}/>
       {user ? (
         <AuthorisedApp currentUserId={user.id} />
       ) : (

@@ -12,6 +12,7 @@ export default function ConversationsListContainer({ selectConversation }) {
       {
         connected: () => conversationsSubscription.perform("all_conversations"),
         received: data => setConversations(data),
+        findUser: username => conversationsSubscription.perform('find_user', username)
       }
     );
 
@@ -21,6 +22,7 @@ export default function ConversationsListContainer({ selectConversation }) {
   return (
     <div className="conversations-list">
       <h2>Conversations list</h2>
+      <button>New Conversation</button>
       <ul>
         {conversations.map(({ id, title }, index) => (
           <ConversationsListItem
