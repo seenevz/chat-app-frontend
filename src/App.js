@@ -5,7 +5,6 @@ import AuthorisedApp from "./containers/AuthorisedApp";
 import LoginContainer from "./containers/login/LoginContainer";
 import { verifyUser, logoutUser } from "./ApiAdapter";
 
-
 function App() {
   const [user, setUser] = useState(undefined);
 
