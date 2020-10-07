@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { loginUser, signupUser } from "../../ApiAdapter";
 
-import "./login.css";
 import LoginForm from "../../components/LoginForm.jsx";
 
 export default function LoginContainer({ setUser }) {

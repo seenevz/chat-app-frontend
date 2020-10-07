@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import NavbarContainer from "./containers/navbar/NavbarContainer";
 import AuthorisedApp from "./containers/AuthorisedApp";
 import LoginContainer from "./containers/login/LoginContainer";

@@ -1,5 +1,4 @@
 import React from "react";
-import "./Navbar.css";
 
 export default function NavbarContainer({ logged_in, handleLogout, user = {}}) {
 
