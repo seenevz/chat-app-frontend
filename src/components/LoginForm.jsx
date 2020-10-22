@@ -24,62 +24,90 @@ export default function LoginForm({ handleSubmit, loginScreen }) {
 
   return (
     <form
-      className="login-form"
+      className="box" 
       onSubmit={e => {
         e.preventDefault();
         handleSubmit({ auth: { ...formValues } });
       }}
     >
-      <label htmlFor="username">Username</label>
+      <div className="field">
+      <label className="label" htmlFor="username">Username</label>
+      <div className="control">
       <input
+        className="input"
         name="username"
         type="text"
         onChange={handleInput}
         value={username}
-      />
-      <label htmlFor="password">Password</label>
+      /></div>
+      </div>
+      <div className="field">
+      <label  className="label" htmlFor="password">Password</label>
+      <div className="control">
       <input
+        className="input"
         name="password"
         type="password"
         onChange={handleInput}
         value={password}
       />
+      </div>
+      </div>
       {!loginScreen && (
         <>
-          <label>
+      <div className="field">
+          <label className="label" htmlFor="password_confirmation">
             Confirm Password
+          </label>
+          <div className="control">
             <input
+              className="input"
               name="password_confirmation"
               type="password"
               onChange={handleInput}
               value={password_confirmation}
             />
-          </label>
-          <label>
+          </div>
+      </div>
+      <div className="field">
+          <label className="label" htmlFor="first_name">
             First Name
+          </label>
+          <div className="control">
             <input
+              className="input"
               type="text"
               name="first_name"
               onChange={handleInput}
               value={first_name}
             />
-          </label>
-          <label>
+          </div>
+      </div>
+      <div className="field">
+          <label className="label" htmlFor="last_name">
             Last Name
+          </label>
+          <div className="control">
             <input
+              className="input"
               type="text"
               name="last_name"
               onChange={handleInput}
               value={last_name}
             />
-          </label>
+          </div>
+      </div>
         </>
       )}
-      <input
+      <div className="control">
+      <button
+        className="button is-primary"
         type="submit"
         name="submit"
-        value={loginScreen ? "Login" : "Sign up"}
-      />
+          >
+        {loginScreen ? "Login" : "Sign up"}
+      </button>
+      </div>
     </form>
   );
 }

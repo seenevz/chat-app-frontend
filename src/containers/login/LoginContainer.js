@@ -32,12 +32,12 @@ export default function LoginContainer({ setUser }) {
   };
 
   return (
-    <div className="login-container">
-      {error && <p>{error}</p>}
-      <LoginForm handleSubmit={loginScreen ? handleLoginUser : handleSignupUser} loginScreen={loginScreen} />
-      <h4>
-        <a onClick={handleScreenChange}>{loginScreen ? "Sign up" : "Login"}</a>
-      </h4>
+    <div className="section is-large">
+      {error && <p>{error}</p>}  
+        <div className="column is-one-third is-offset-one-third">
+          <LoginForm handleSubmit={loginScreen ? handleLoginUser : handleSignupUser} loginScreen={loginScreen} />
+          <a onClick={handleScreenChange}>{loginScreen ? "Sign up" : "Login"}</a>
+      </div>
     </div>
   );
 }
