@@ -8,8 +8,8 @@ export default function AuthorisedApp({currentUserId}) {
     return () => cableConnection.disconnect();
   });
   return (
-    <>
-      <HomeContainer currentUserId={currentUserId}/>
-    </>
+    <div className="hero is-fullheight-with-navbar is-clipped">
+      <HomeContainer currentUserId={currentUserId} />
+    </div>
   );
 }

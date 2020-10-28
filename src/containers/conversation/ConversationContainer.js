@@ -52,8 +52,8 @@ export default function ConversationContainer({
   };
 
   return (
-    <div className="conversation-container">
-      <h1>Conversation id: {conversationId}</h1>
+    <div className="section box column is-three-quarters is-fixed-height">
+      <h1 className="title">Conversation id: {conversationId}</h1>
       <ConversationBody messages={messages} currentUserId={currentUserId} />
       <ConversationInputBox
         handleInput={handleFormInput}

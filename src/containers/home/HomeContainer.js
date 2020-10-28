@@ -7,9 +7,12 @@ export default function HomeContainer({currentUserId}) {
 
   const selectConversation = (conversationId) => setConversationId(conversationId)
   return (
-    <div className="home-container">
-      <ConversationsListContainer selectConversation={selectConversation}/>
-      <ConversationContainer conversationId={conversationId} currentUserId={currentUserId}/>
+    <div className="hero-body columns conversations-height">
+      <ConversationsListContainer selectConversation={selectConversation} />
+      <ConversationContainer
+        conversationId={conversationId}
+        currentUserId={currentUserId}
+      />
     </div>
   );
 }

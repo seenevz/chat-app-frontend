@@ -5,7 +5,7 @@ export default function NavbarContainer({ logged_in, handleLogout, user = {}}) {
   const {username} = user
 
   return (
-    <div className="navbar-container">
+    <div className="navbar">
       {logged_in && (
         <>
           Logged in user: {username}

@@ -1,10 +1,22 @@
 @charset "utf-8";
 
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
 
 // Global style variables
 $family-sans-serif: "Nunito", sans-serif;
 
 //Bulma imports
 @import "../node_modules/bulma/bulma.sass";
+
+.is-fixed-height {
+  height: 700px;
+}
+
+.box.is-horizontal-box {
+  margin: 0;
+}
+
+.has-overflow-hidden {
+  overflow: hidden;
+}

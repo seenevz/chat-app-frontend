@@ -6,7 +6,7 @@ export default function ConversationInputBox({
   handleSubmit,
 }) {
   return (
-    <div>
+    <div className=''>
       <form onSubmit={handleSubmit}>
         <label>
           Message:

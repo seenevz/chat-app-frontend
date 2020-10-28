@@ -13,8 +13,9 @@ export default function ConversationBody({ messages, currentUserId }) {
 
   const isFromCurrentUser = (currentUserId, messageUserId) =>
     currentUserId === messageUserId;
+
   return (
-    <ul ref={ul} className="conversation-body">
+    <div ref={ul} className="section is-flex is-flex-direction-column has-overflow-hidden">
       {messages.map((message, index) => {
         return (
           <ConversationMessage
@@ -24,6 +25,6 @@ export default function ConversationBody({ messages, currentUserId }) {
           />
         );
       })}
-    </ul>
+    </div>
   );
 }

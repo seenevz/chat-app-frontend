@@ -1,6 +1,8 @@
 import * as cable from "actioncable";
 
-const BASE_URL = "127.0.0.1:3000";
+// const BASE_URL = "127.0.0.1:3000"; => remove this after development is complete
+const BASE_URL = "192.168.1.30:3000"; // Here goes ip address of backend machine
+
 const BASE_HTTP = `http://${BASE_URL}`;
 
 const BASE_WS = `ws://${BASE_URL}`;

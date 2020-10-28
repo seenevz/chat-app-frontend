@@ -35,8 +35,8 @@ export default function ConversationsListContainer({ selectConversation }) {
         setUsernameResults(payload);
         break;
       case "create_conversation":
-        setConversations([... conversations, payload])
-        selectConversation(payload.id)
+        setConversations([...conversations, payload]);
+        selectConversation(payload.id);
         break;
       default:
         break;
@@ -64,11 +64,15 @@ export default function ConversationsListContainer({ selectConversation }) {
   };
 
   return (
-    <div className="conversations-list">
-      <h2>Conversations list</h2>
-      <button onClick={toggleNewConversation}>New Conversation</button>
+    <div className="column box section is-flex is-flex-direction-column is-fixed-height is-horizontal-box">
+      <h2 className="title">Conversations list</h2>
+      <div className="block">
+        <button onClick={toggleNewConversation} className="button">
+          New Conversation
+        </button>
+      </div>
       {newConversation ? (
-        <ul>
+        <div>
           {conversations.map(({ id, title }, index) => (
             <ConversationsListItem
               title={title}
@@ -77,7 +81,7 @@ export default function ConversationsListContainer({ selectConversation }) {
               handleClick={selectConversation}
             />
           ))}
-        </ul>
+        </div>
       ) : (
         <>
           <label>
