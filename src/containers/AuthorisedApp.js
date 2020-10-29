@@ -8,7 +8,7 @@ export default function AuthorisedApp({currentUserId}) {
     return () => cableConnection.disconnect();
   });
   return (
-    <div className="hero is-fullheight-with-navbar is-clipped">
+    <div className="hero is-primary is-fullheight-with-navbar is-clipped">
       <HomeContainer currentUserId={currentUserId} />
     </div>
   );

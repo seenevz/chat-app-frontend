@@ -1,8 +1,17 @@
 import React from "react";
 
-export default function ConversationMessage({ message: { text }, fromCurrentUser }) {
+export default function ConversationMessage({
+  message: { text },
+  fromCurrentUser,
+}) {
   return (
-    <div className={`media ${fromCurrentUser ? "is-offset-one-half" : null}`}>
+    <div
+      className={`column media is-three-quarters ${
+        fromCurrentUser
+          ? "has-background-primary is-align-self-flex-end"
+          : "has-background-grey-lighter"
+      }`}
+    >
       {text}
     </div>
   );

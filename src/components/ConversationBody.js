@@ -15,7 +15,10 @@ export default function ConversationBody({ messages, currentUserId }) {
     currentUserId === messageUserId;
 
   return (
-    <div ref={ul} className="section is-flex is-flex-direction-column has-overflow-hidden">
+    <div
+      ref={ul}
+      className="section is-fixed-height-80 is-flex is-flex-direction-column columns has-overflow-hidden has-background-light"
+    >
       {messages.map((message, index) => {
         return (
           <ConversationMessage

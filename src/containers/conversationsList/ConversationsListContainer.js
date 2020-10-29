@@ -64,15 +64,15 @@ export default function ConversationsListContainer({ selectConversation }) {
   };
 
   return (
-    <div className="column box section is-flex is-flex-direction-column is-fixed-height is-horizontal-box">
-      <h2 className="title">Conversations list</h2>
+    <div className="column box section is-flex is-flex-direction-column is-fixed-height-700px is-horizontal-box">
+      <h2 className="title has-colors-reset">Conversations list</h2>
       <div className="block">
         <button onClick={toggleNewConversation} className="button">
           New Conversation
         </button>
       </div>
       {newConversation ? (
-        <div>
+        <div className="has-background-light has-overflow-hidden">
           {conversations.map(({ id, title }, index) => (
             <ConversationsListItem
               title={title}

@@ -9,8 +9,12 @@ $family-sans-serif: "Nunito", sans-serif;
 //Bulma imports
 @import "../node_modules/bulma/bulma.sass";
 
-.is-fixed-height {
-  height: 700px;
+.is-fixed-height-700px {
+  height: 800px;
+}
+
+.is-fixed-height-80 {
+  height: 85%;
 }
 
 .box.is-horizontal-box {
@@ -18,5 +22,10 @@ $family-sans-serif: "Nunito", sans-serif;
 }
 
 .has-overflow-hidden {
-  overflow: hidden;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.hero .title.has-colors-reset {
+  color: $text-strong;
 }
