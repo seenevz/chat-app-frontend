@@ -84,14 +84,21 @@ export default function ConversationsListContainer({ selectConversation }) {
         </div>
       ) : (
         <>
-          <label>
+          <div className='field'>
+            <label className='label'>
+
             Search for username:
+            </label>
+            <div className='control'>
             <input
+              className='input'
               name="usernameSearch"
               value={usernameSearch}
               onChange={handleOnChangeSearch}
-            />
-          </label>
+              />
+              </div>
+              
+          </div>
           <p>create conversation with: {newConversationUser.username}</p>
           <ul>
             {usernameSearchResults.map((user, index) => (
@@ -103,7 +110,7 @@ export default function ConversationsListContainer({ selectConversation }) {
               </li>
             ))}
           </ul>
-          <button onClick={handleCreateConversation}>
+          <button className='button' onClick={handleCreateConversation}>
             Create Conversation
           </button>
         </>

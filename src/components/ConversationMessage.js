@@ -4,6 +4,7 @@ export default function ConversationMessage({
   message: { text },
   fromCurrentUser,
 }) {
+
   return (
     <div
       className={`column media is-three-quarters ${
@@ -12,7 +13,7 @@ export default function ConversationMessage({
           : "has-background-grey-lighter"
       }`}
     >
-      {text}
+      <p className='media-content' style={{whiteSpace: 'pre-line'}}>{text}</p>
     </div>
   );
 }

@@ -9,6 +9,10 @@ $family-sans-serif: "Nunito", sans-serif;
 //Bulma imports
 @import "../node_modules/bulma/bulma.sass";
 
+textarea {
+  resize: none;
+}
+
 .is-fixed-height-700px {
   height: 800px;
 }
