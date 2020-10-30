@@ -19,12 +19,13 @@ export default function ConversationInputBox({
   return (
     <div className="">
       <form onSubmit={handleSubmit} ref={form}>
-        <div className="field has-addons">
+        <div className="field is-grouped">
           <div className="control is-expanded">
             <textarea
+              rows={1}
               onKeyPress={handleKeyPress}
               placeholder="type in your message..."
-              className="input"
+              className="textarea has-fixed-size"
               type="text"
               onChange={handleInput}
               name="message"
