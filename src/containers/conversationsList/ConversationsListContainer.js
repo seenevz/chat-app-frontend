@@ -35,11 +35,20 @@ export default function ConversationsListContainer({ selectConversation }) {
         setUsernameResults(payload);
         break;
       case "create_conversation":
-        setConversations([...conversations, payload]);
-        selectConversation(payload.id);
+        setConversations(checkAndSetConversations(conversations, payload));
+        selectConversation(payload.id)
         break;
       default:
+        alert("Error");
         break;
+    }
+  };
+
+  const checkAndSetConversations = (conversationsArr, newConversation) => {
+    if (conversationsArr.length && !conversationsArr.some(c => c.id === newConversation.id)) {
+      return [...conversationsArr, newConversation];
+    } else {
+      return conversationsArr;
     }
   };
 
@@ -84,20 +93,16 @@ export default function ConversationsListContainer({ selectConversation }) {
         </div>
       ) : (
         <>
-          <div className='field'>
-            <label className='label'>
-
-            Search for username:
-            </label>
-            <div className='control'>
-            <input
-              className='input'
-              name="usernameSearch"
-              value={usernameSearch}
-              onChange={handleOnChangeSearch}
+          <div className="field">
+            <label className="label">Search for username:</label>
+            <div className="control">
+              <input
+                className="input"
+                name="usernameSearch"
+                value={usernameSearch}
+                onChange={handleOnChangeSearch}
               />
-              </div>
-              
+            </div>
           </div>
           <p>create conversation with: {newConversationUser.username}</p>
           <ul>
@@ -110,7 +115,7 @@ export default function ConversationsListContainer({ selectConversation }) {
               </li>
             ))}
           </ul>
-          <button className='button' onClick={handleCreateConversation}>
+          <button className="button" onClick={handleCreateConversation}>
             Create Conversation
           </button>
         </>
