@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { cableConnection } from "../../ApiAdapter";
-import ConversationBody from "../../components/ConversationBody";
-import ConversationInputBox from "../../components/ConversationInputBox";
+import ConversationBody from "../../components/ConversationBody.jsx";
+import ConversationInputBox from "../../components/ConversationInputBox.jsx";
 
 export default function ConversationContainer({
   conversationId,

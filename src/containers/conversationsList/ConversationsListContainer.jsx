@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { cableConnection } from "../../ApiAdapter";
 
-import ConversationsListItem from "../../components/ConversationsListItem";
+import ConversationsListItem from "../../components/ConversationsListItem.jsx";
 
 export default function ConversationsListContainer({ selectConversation }) {
   const [conversations, setConversations] = useState([]);
@@ -36,7 +36,7 @@ export default function ConversationsListContainer({ selectConversation }) {
         break;
       case "create_conversation":
         setConversations(checkAndSetConversations(conversations, payload));
-        selectConversation(payload.id)
+        selectConversation(payload.id);
         break;
       default:
         alert("Error");
@@ -45,7 +45,10 @@ export default function ConversationsListContainer({ selectConversation }) {
   };
 
   const checkAndSetConversations = (conversationsArr, newConversation) => {
-    if (conversationsArr.length && !conversationsArr.some(c => c.id === newConversation.id)) {
+    if (
+      conversationsArr.length &&
+      !conversationsArr.some(c => c.id === newConversation.id)
+    ) {
       return [...conversationsArr, newConversation];
     } else {
       return conversationsArr;
@@ -75,10 +78,18 @@ export default function ConversationsListContainer({ selectConversation }) {
   return (
     <div className="column box section is-flex is-flex-direction-column is-fixed-height-700px is-horizontal-box">
       <h2 className="title has-colors-reset">Conversations list</h2>
-      <div className="block">
-        <button onClick={toggleNewConversation} className="button">
+      {/* <button onClick={toggleNewConversation} className="button">
           New Conversation
-        </button>
+        </button> */}
+      <div className="field">
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            name="usernameSearch"
+            onChange={handleOnChangeSearch}
+          />
+        </div>
       </div>
       {newConversation ? (
         <div className="has-background-light has-overflow-hidden">

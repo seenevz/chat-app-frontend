@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ConversationsListContainer from "../conversationsList/ConversationsListContainer";
-import ConversationContainer from "../conversation/ConversationContainer";
+import ConversationsListContainer from "../conversationsList/ConversationsListContainer.jsx";
+import ConversationContainer from "../conversation/ConversationContainer.jsx";
 
 export default function HomeContainer({currentUserId}) {
   const [conversationId, setConversationId] = useState(null)

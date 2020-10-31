@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import NavbarContainer from "./containers/navbar/NavbarContainer";
-import AuthorisedApp from "./containers/AuthorisedApp";
-import LoginContainer from "./containers/login/LoginContainer";
+import NavbarContainer from "./containers/navbar/NavbarContainer.jsx";
+import AuthorisedApp from "./containers/AuthorisedApp.jsx";
+import LoginContainer from "./containers/login/LoginContainer.jsx";
 import { verifyUser, logoutUser } from "./ApiAdapter";
 
 function App() {

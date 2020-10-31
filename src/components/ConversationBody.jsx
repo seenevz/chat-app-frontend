@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import ConversationMessage from "./ConversationMessage";
+import ConversationMessage from "./ConversationMessage.jsx";
 
 export default function ConversationBody({ messages, currentUserId }) {
   const ul = useRef(null);

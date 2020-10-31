@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import HomeContainer from "../containers/home/HomeContainer";
+import HomeContainer from "./home/HomeContainer.jsx";
 
 import { cableConnection } from "../ApiAdapter";
 
