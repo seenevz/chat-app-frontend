@@ -5,7 +5,6 @@ import ConversationsListItem from "../../components/ConversationsListItem.jsx";
 
 export default function ConversationsListContainer({ selectConversation }) {
   const [conversations, setConversations] = useState([]);
-  const [newConversation, setNewConversation] = useState(true);
   const [usernameSearch, setUsernameSearch] = useState("");
   const [usernameSearchResults, setUsernameResults] = useState([]);
   const [newConversationUser, setNewConversationUser] = useState({});
@@ -37,6 +36,7 @@ export default function ConversationsListContainer({ selectConversation }) {
       case "create_conversation":
         setConversations(checkAndSetConversations(conversations, payload));
         selectConversation(payload.id);
+        setUsernameSearch("");
         break;
       default:
         alert("Error");
@@ -65,72 +65,58 @@ export default function ConversationsListContainer({ selectConversation }) {
     }
   }, [usernameSearch]);
 
-  const toggleNewConversation = () => setNewConversation(state => !state);
-
-  const handleOnChangeSearch = e => setUsernameSearch(e.target.value);
-
-  const handleCreateConversation = () => {
+  useEffect(() => {
     conversationsSubscription.current.createConversation(
       newConversationUser.id
     );
-  };
+  }, [newConversationUser]);
+
+  const handleOnChangeSearch = e => setUsernameSearch(e.target.value);
 
   return (
     <div className="column box section is-flex is-flex-direction-column is-fixed-height-700px is-horizontal-box">
       <h2 className="title has-colors-reset">Conversations list</h2>
-      {/* <button onClick={toggleNewConversation} className="button">
-          New Conversation
-        </button> */}
       <div className="field">
         <div className="control">
           <input
+            placeholder="Search for user..."
             className="input"
             type="text"
             name="usernameSearch"
             onChange={handleOnChangeSearch}
           />
         </div>
-      </div>
-      {newConversation ? (
-        <div className="has-background-light has-overflow-hidden">
-          {conversations.map(({ id, title }, index) => (
-            <ConversationsListItem
-              title={title}
-              conversationId={id}
-              key={id + index}
-              handleClick={selectConversation}
-            />
-          ))}
-        </div>
-      ) : (
-        <>
-          <div className="field">
-            <label className="label">Search for username:</label>
-            <div className="control">
-              <input
-                className="input"
-                name="usernameSearch"
-                value={usernameSearch}
-                onChange={handleOnChangeSearch}
-              />
+        <div
+          className={`dropdown ${usernameSearch.length !== 0 && "is-active"}`}
+        >
+          <div className="dropdown-menu has-fixed-width-18">
+            <div className="dropdown-content">
+              {usernameSearchResults[0] &&
+                usernameSearchResults.map((user, index) => (
+                  <>
+                    <a
+                      className="dropdown-item"
+                      key={user.id * index}
+                      onClick={() => setNewConversationUser(user)}
+                    >
+                      {user.username}
+                    </a>
+                  </>
+                ))}
             </div>
           </div>
-          <p>create conversation with: {newConversationUser.username}</p>
-          <ul>
-            {usernameSearchResults.map((user, index) => (
-              <li
-                key={user.id + index}
-                onClick={() => setNewConversationUser(user)}
-              >
-                {user.username}
-              </li>
-            ))}
-          </ul>
-          <button className="button" onClick={handleCreateConversation}>
-            Create Conversation
-          </button>
-        </>
-      )}
+        </div>
+      </div>
+      <div className="has-background-light has-overflow-hidden">
+        {conversations.map(({ id, title }, index) => (
+          <ConversationsListItem
+            title={title}
+            conversationId={id}
+            key={id + index}
+            handleClick={selectConversation}
+          />
+        ))}
+      </div>
     </div>
   );
 }
